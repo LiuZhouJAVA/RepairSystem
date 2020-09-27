@@ -1,0 +1,261 @@
+html {
+    /*font-family: sans-serif;*/
+    /*background: linear-gradient(#141e30, #243b55);*/
+    background-image: url("../background05.jpg");
+}
+.choosemenu
+{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 1000px;
+    height: 500px;
+    padding: 40px;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.74);
+    box-sizing: border-box;
+    box-shadow: 0 15px 25px rgba(0,0,0,.6);
+    border-radius: 10px;
+    overflow-y: scroll;
+    z-index: 100;
+}
+.nav
+{
+    width: 100%;
+    height: 50px;
+    display: flex;
+}
+
+.nav li
+{
+    flex-grow: 1;
+    text-align: center;
+    line-height: 50px;
+    color: #03e9f4;
+}
+.checkbox
+{
+    margin-top: 22.5px;
+    margin-bottom: 22.5px;
+    transform: translate(-50%, -50%);
+}
+
+.nav li input
+{
+    /*width: 50px;*/
+    padding: 10px 0;
+    font-size: 16px;
+    color: #03e9f4;
+    /*margin-bottom: 30px;*/
+    border: none;
+    /*border-bottom: 1px solid #fff;*/
+    outline: none;
+    background: transparent;
+}
+
+.icon
+{
+    /*margin-top: 15px;*/
+    position: absolute;
+    width: 50px;
+    height: 40px;
+    float: right;
+    right: 200px;
+    /*background-color: #ff253a;*/
+    /*overflow: hidden;*/
+}
+.icon i
+{
+    font-size: 40px;
+    color: black;
+    text-align: center;
+    /*margin-top: 20px;*/
+    animation: change;
+    animation-duration:5s;
+    animation-iteration-count:infinite;
+}
+
+@keyframes change {
+    from{
+        color: darkturquoise;
+    }
+    10%
+    {
+        color: rgb(0,47,109);
+    }
+    20%
+    {
+        color: #ff253a;
+    }
+    30%
+    {
+        color: rgb(253,193,35);
+    }
+    40%
+    {
+        color: rgb(90,255,137);
+    }
+    50%
+    {
+        color: rgb(219, 162, 255);
+    }
+    60%
+    {
+        color: rgb(98, 140, 255);
+    }
+    70%
+    {
+        color: rgb(195,232,141);
+    }
+    80%
+    {
+        color: rgb(134,49,205);
+    }
+    90%
+    {
+        color: rgb(245, 167, 67);
+    }
+    to
+    {
+        color: #03e9f4;
+    }
+
+}
+
+.frame
+{
+    /*display: none;*/
+    /*height: 600px;*/
+    width: 300px;
+    height: 0px;
+    overflow: hidden;
+    background-color: transparent;
+    transition: height 300ms;
+    box-shadow: 0 15px 25px rgba(0,0,0,.6);
+}
+
+.icon:hover .frame
+{
+    height: 600px;
+}
+
+.submitbut
+{
+    border: none;
+    background-color: black;
+    position: relative;
+    display: inline-block;
+    padding: 10px 20px;
+    color: #03e9f4;
+    font-size: 16px;
+    text-decoration: none;
+    text-transform: uppercase;
+    overflow: hidden;
+    transition: .5s;
+    margin-top: 40px;
+    letter-spacing: 4px
+}
+.submitbut:hover{
+    background: #03e9f4;
+    color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 5px #03e9f4,
+    0 0 25px #03e9f4,
+    0 0 50px #03e9f4,
+    0 0 100px #03e9f4;
+}
+.img
+
+{
+    width: 50px;
+    height: 50px;
+}
+.header
+{
+    display: flex;
+}
+
+.searchbar
+{
+    margin-left: 670px;
+    width: 496px;
+    /*height: 40px;*/
+    /*border: 1px solid rgba(65, 65, 65, 0.24);*/
+}
+.search-shell
+{
+    border: 1px solid rgba(65, 65, 65, 0.24);
+    height: 40px;
+    width: 442px;
+}
+
+
+.search-botton
+{
+    width: 52px;
+    height: 40px;
+    color: #03e9f4;
+    background-color: black;
+
+}
+.search-botton:hover{
+    background: #03e9f4;
+    color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 5px #03e9f4,
+    0 0 25px #03e9f4,
+    0 0 50px #03e9f4,
+    0 0 100px #03e9f4;
+}
+.toolbar
+{
+    position: absolute;
+    top: 50%;
+    float: left;
+    width: 200px;
+    height: 800px;
+    /*padding: 40px;*/
+    transform: translate(0%,-50%);
+    /*第一个参数是右
+    第二个参数是下*/
+    background: rgba(0, 0, 0, 0.74);
+    box-sizing: border-box;
+    box-shadow: 0 15px 25px rgba(0,0,0,.6);
+    border-radius: 10px;
+    /*overflow-y: scroll;*/
+}
+
+.toolbar div
+{
+    width: 200px;
+    /*background-color: #bfa;*/
+    height: 100px;
+    font-size: 25px;
+    color: #03e9f4;
+    text-align: center;
+    line-height: 100px;
+    transition: 0.5s;
+    /*border: 1px solid rebeccapurple;*/
+}
+
+.toolbar div:hover
+{
+    background: #03e9f4;
+    color: #fff;
+    font-size: 30px;
+    border-radius: 5px;
+    box-shadow: 0 0 5px #03e9f4,
+    0 0 25px #03e9f4,
+    0 0 50px #03e9f4,
+    0 0 100px #03e9f4;
+}
+
+.nav img:hover
+{
+    width: 200px;
+    height: 200px;
+    z-index: 9999;
+}
+
+
+
