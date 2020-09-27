@@ -1,0 +1,18 @@
+<component name="libraryTable">
+  <library name="c3p0-0.9.5.2">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/src/libs/c3p0-0.9.5.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/libs/druid-1.1.10.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/libs/commons-logging-1.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/libs/mysql-connector-java-8.0.16.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/libs/mchange-commons-java-0.2.12.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/libs/spring-beans-5.2.5.RELEASE.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/libs/spring-context-5.2.5.RELEASE.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/libs/spring-core-5.2.5.RELEASE.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/libs/spring-jdbc-5.2.5.RELEASE.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/libs/spring-tx-5.2.5.RELEASE.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
