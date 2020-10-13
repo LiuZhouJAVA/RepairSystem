@@ -23,13 +23,13 @@ public class Servlet01 extends HttpServlet {
         LoginBean loginBean=new LoginBean();
         if(loginBean.Login(user,pass)==1) {
 
-            request.getSession().setAttribute("user", user);
-            request.getSession().setAttribute("pass", pass);
+
 
             if (user.equals("root") && pass.equals("root")) {
                 response.sendRedirect("ROOT.jsp");
             } else {
-
+                request.getSession().setAttribute("user", user);
+                request.getSession().setAttribute("pass", pass);
 //            request.getRequestDispatcher("index.jsp").forward(request,response);
                 response.sendRedirect("index.jsp");
             }

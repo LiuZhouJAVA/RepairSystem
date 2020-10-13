@@ -77,8 +77,7 @@
 
         List<Map<String,Object>> list=getBean.GET_ALLREPARI();
 
-        for (Map<String,Object> obj:list
-        ) {
+        for (Map<String,Object> obj:list) {
 
 
 
@@ -89,9 +88,10 @@
     <br>
     <%
         String userid=(String) obj.get("userid");
-        System.out.println((String) obj.get("userid"));
+        System.out.println((String) obj.get("userid")+"------");
         List<Map<String,Object>> list2=getBean.GETTEL(userid);
         String TEL= (String) list2.get(0).get("tel");
+//        System.out.println("----"+TEL+"----");
     %>
     <span>用户电话 ： </span><span><%=TEL%></span> <br>
     <br>
