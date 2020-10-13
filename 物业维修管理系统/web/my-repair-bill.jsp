@@ -1,0 +1,256 @@
+<%@ page import="cn.itcast.JavaBean.GetBean" %>
+<%@ page import="java.util.Map" %>
+<%@ page import="java.util.List" %><%--
+  Created by IntelliJ IDEA.
+  User: HP
+  Date: 2020/10/12
+  Time: 18:09
+  To change this template use File | Settings | File Templates.
+--%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="FA/css/all.css">
+    <style>
+        html{
+            /* background-color: yellow;*/
+        }
+        body{
+            width: 100%;
+            height: 1080px;
+        }
+        #contenthtml
+        {
+            width: 1440px;
+            height: 900px;
+
+        }
+
+        .CT{
+            width: 1440px;
+            height: 900px;
+            position:absolute;
+
+            left:0px;
+            right:0px;
+
+            margin-left:auto;
+            margin-right:auto;
+        }
+        #choose
+        {
+            margin-top: 20px;
+            margin-left: 207px;
+            font-size: 15px;
+            font-weight: bolder;
+            color: #00a8ec;
+        }
+        #choose span
+        {
+            line-height: 100%;
+        }
+        #content1{
+            position:absolute;
+
+            left:0px;
+            right:0px;
+
+            margin-left:auto;
+            margin-right:auto;
+        }
+
+        .show
+        {
+            width: 1440px;
+            height: 120px;
+
+            margin-left: 200px;
+            margin-top: 20px;
+            border: 1px solid deepskyblue;
+            font-size: 18px;
+            font-weight: bolder;
+            font-family: Arial, "Microsoft Yahei", "Helvetica Neue", Helvetica, sans-serif;
+            transition: 0.5s;
+            border-radius: 10px;
+            overflow: auto;
+        }
+
+        .show:hover
+        {
+            box-shadow: 10px 10px 10px black;
+        }
+        #confirm
+        {
+            width: 75px;
+            height: 25px;
+            background-color: deepskyblue;
+            color: white;
+            font-weight: bolder;
+        }
+        .SA
+        {
+            float: right;
+            font-size: 18px;
+            margin-right: 15px;
+        }
+        .Call
+        {
+
+            border-radius: 10px;
+            border: 1px solid #15ffd9;
+            padding-top: 5px;
+            padding-bottom: 5px;
+            /*background-color: white;*/
+        }
+
+    </style>
+</head>
+<body>
+<div id="choose">
+    <form action="" method="post">
+        <span class="claf">问题分类</span>
+        <select name="qusoption">
+            <option value="--请选择--" >--请选择--</option>
+            <option value="物业保修">物业保修</option>
+            <option value="活动扰民" >活动扰民</option>
+            <option value="服务缺陷" >服务缺陷</option>
+            <option value="其他问题" >其他问题</option>
+        </select>
+        <span>状态</span>
+        <select name="staoption">
+            <option value="--全部--" >--全部--</option>
+            <option value="处理中" >处理中</option>
+            <option value="未处理" >未处理</option>
+            <option value="已处理" >已处理</option>
+        </select>
+        <button type="submit" id="confirm" onclick="func()" >确认</button>
+    </form>
+</div>
+<hr>
+<div>
+    <%
+//        response.setHeader("refresh","2");
+        GetBean getBean=new GetBean();
+
+        response.setCharacterEncoding("utf-8");
+        response.setContentType("text/html");
+        request.setCharacterEncoding("utf-8");
+        String classify=request.getParameter("qusoption");
+        String status=request.getParameter("staoption");
+        String user= (String) session.getAttribute("user");
+
+        System.out.println(classify);
+        System.out.println(status);
+        System.out.println(user);
+        /*String classify= (String) session.getAttribute("classify");
+        String status= (String) session.getAttribute("status");*/
+
+        if (classify==null&&user!=null)
+        {
+            List<Map<String,Object>> list=getBean.GET_ALLREPARI();
+            System.out.println();
+            for (Map<String,Object> obj:list
+            ) {
+                System.out.println("======="+obj.get("userid"));
+                if(user.equals(obj.get("userid"))){
+
+    %>
+    <div class="show" >
+    <span>问题分类 ： </span><span><%=obj.get("classify")==null?" ":obj.get("classify")%></span> <br>
+        <br>
+    <span>发生地址 ： </span><span><%=obj.get("address")==null?" ":obj.get("address")%></span><br>
+        <br>
+    <span>问题描述 ： </span><span><%=obj.get("state")==null?" ":obj.get("state")%></span><br>
+
+<%--    <span>---------------------------------------------------</span><br>--%>
+
+
+        <div class="SA">
+    <i class="fas fa-chevron-circle-right" style="padding-right: 10px"></i><span class="STA"><%=obj.get("statu")==null?"未处理":obj.get("statu")%></span>
+</div>
+        <br><br>
+
+        <span>时间 ： </span><span><%=obj.get("time")==null?" ":obj.get("time")%></span><br>
+        <br>
+        <div class="Call">
+            物业反馈 ： <%=obj.get("callback")==null?" ":obj.get("callback")%>
+        </div>
+
+    </div>
+    <%
+            }}}
+
+//        if (classify == "物业保修"){
+            List<Map<String,Object>> list1 = getBean.GET_CHOOSEREPAIR(user,classify,status);
+            for (Map<String,Object> obj2:list1)
+            {
+    %>
+<div class="show" >
+    <span>问题分类 ： </span><span><%=obj2.get("classify")==null?" ":obj2.get("classify")%></span><br>
+    <br>
+    <span>发生地址 ： </span><span><%=obj2.get("address")==null?" ":obj2.get("address")%></span><br>
+    <br>
+    <span>问题描述 ： </span><span><%=obj2.get("state")==null?" ":obj2.get("state")%></span><br>
+
+<%--    <span>---------------------------------------------------</span><br>--%>
+
+
+    <div class="SA">
+        <i class="fas fa-chevron-circle-right" style="padding-right: 10px"></i><span class="STA"><%=obj2.get("statu")==null?"未处理":obj2.get("statu")%></span>
+    </div>
+    <br><br>
+    <span>时间 ： </span><span><%=obj2.get("time")==null?" ":obj2.get("time")%></span><br>
+    <br>
+    <div class="Call" >
+        物业反馈 ： <%=obj2.get("callback")==null?" ":obj2.get("callback")%>
+    </div>
+</div>
+    <%
+//            }
+
+        }
+
+    %>
+
+
+</div>
+
+
+<script>
+function func() {
+    window.location.reload();
+}
+
+function func2() {
+    var sta=document.getElementsByClassName("STA");
+
+    for (var x of sta) {
+        if (x.innerHTML=="未处理")
+        {
+            x.style.color="red";
+        }
+        if (x.innerHTML=="已处理")
+        {
+            x.style.color="green";
+        }
+        if (x.innerHTML=="处理中")
+        {
+            x.style.color="#FFB300";
+        }
+    }
+}
+func2();
+/*var show=document.getElementsByClassName("show");
+show.onclick=function () {
+    var d=show.getElementsByTagName("div");
+    d[0].style.display="block";
+}*/
+
+
+</script>
+</body>
+</html>
