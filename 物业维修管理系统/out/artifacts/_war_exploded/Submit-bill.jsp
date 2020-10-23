@@ -139,7 +139,7 @@
             <span>发生地址：</span><input type="text" name="address" class="address">
             <br>
             <br>
-            <span>事件描述：</span><input type="text" name="state" class="state">
+            <span>事件描述：</span><textarea type="text" name="state" class="state"></textarea>
 
             <br>
             <br>

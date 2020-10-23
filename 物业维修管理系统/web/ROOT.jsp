@@ -11,6 +11,15 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <title>Title</title>
+    <!-- Bootstrap -->
+    <link href="./css/bootstrap.min.css" rel="stylesheet">
+
+
     <title>Title</title>
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="FA/css/all.css">
@@ -88,9 +97,21 @@
     <br>
     <%
         String userid=(String) obj.get("userid");
-        System.out.println((String) obj.get("userid")+"------");
+//        System.out.println((String) obj.get("userid")+"------");
         List<Map<String,Object>> list2=getBean.GETTEL(userid);
-        String TEL= (String) list2.get(0).get("tel");
+        String TEL=null;
+        System.out.println(list2.size());
+        for (Map map:
+             list2) {
+            System.out.println(map.get("tel"));
+            TEL=(String) map.get("tel");
+        }
+
+
+       /* Map<String, Object> map = list2.get(0);
+        System.out.println("我是---"+map);
+            String TEL = (String) map.get("tel");*/
+
 //        System.out.println("----"+TEL+"----");
     %>
     <span>用户电话 ： </span><span><%=TEL%></span> <br>
@@ -124,7 +145,8 @@
     <br>
     <br>
     <br>
-    <input type="submit" value="更改" style="margin-left: 30px;border: 2px solid deepskyblue;color: #00a8ec">
+<%--    <input type="submit" value="更改" class="btn btn-danger">--%>
+    <button class="btn btn-danger" type="submit" style="margin-left: 50px" >更改</button>
     <br>
     <br>
     <br>
@@ -141,5 +163,10 @@
 
 
 %>
+
+<!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
+<script src="js/jquery-3.2.1.min.js"></script>
+<!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
+<script src="js/bootstrap.min.js"></script>
 </body>
 </html>

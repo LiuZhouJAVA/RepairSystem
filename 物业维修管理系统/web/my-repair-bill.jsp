@@ -11,7 +11,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <title>Title</title>
+    <!-- Bootstrap -->
+    <link href="./css/bootstrap.min.css" rel="stylesheet">
+
+
     <title>Title</title>
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="FA/css/all.css">
@@ -66,14 +74,14 @@
         .show
         {
             width: 1440px;
-            height: 120px;
+            /*height: 130px;*/
 
             margin-left: 200px;
             margin-top: 20px;
             border: 1px solid deepskyblue;
-            font-size: 18px;
+       /*     font-size: 18px;
             font-weight: bolder;
-            font-family: Arial, "Microsoft Yahei", "Helvetica Neue", Helvetica, sans-serif;
+            font-family: Arial, "Microsoft Yahei", "Helvetica Neue", Helvetica, sans-serif;*/
             transition: 0.5s;
             border-radius: 10px;
             overflow: auto;
@@ -166,23 +174,60 @@
         <br>
     <span>问题描述 ： </span><span><%=obj.get("state")==null?" ":obj.get("state")%></span><br>
 
-<%--    <span>---------------------------------------------------</span><br>--%>
-
 
         <div class="SA">
     <i class="fas fa-chevron-circle-right" style="padding-right: 10px"></i><span class="STA"><%=obj.get("statu")==null?"未处理":obj.get("statu")%></span>
 </div>
-        <br><br>
+        <br>
 
         <span>时间 ： </span><span><%=obj.get("time")==null?" ":obj.get("time")%></span><br>
         <br>
         <div class="Call">
             物业反馈 ： <%=obj.get("callback")==null?" ":obj.get("callback")%>
         </div>
+        <br>
+        <br><p>处理进度条：</p><br>
+        <div class="progress">
 
+
+            <%
+            if(obj.get("statu")==null||obj.get("statu").equals("未处理"))
+            {
+            %>
+            <div class="progress-bar progress-bar-danger  progress-bar-striped active" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 50%">
+                <span class="sr-only"></span>
+            </div>
+            <%
+                }
+            %>
+            <%
+                if(obj.get("statu").equals("已处理"))
+                {
+            %>
+            <div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+                <span class="sr-only"></span>
+            </div>
+            <%
+                }
+            %>
+            <%
+                if(obj.get("statu").equals("处理中"))
+                {
+            %>
+            <div class="progress-bar progress-bar-warning progress-bar-striped active" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 80%">
+                <span class="sr-only"></span>
+            </div>
+            <%
+                }
+            %>
+
+        </div>
     </div>
+
     <%
             }}}
+
+
 
 //        if (classify == "物业保修"){
             List<Map<String,Object>> list1 = getBean.GET_CHOOSEREPAIR(user,classify,status);
@@ -202,11 +247,49 @@
     <div class="SA">
         <i class="fas fa-chevron-circle-right" style="padding-right: 10px"></i><span class="STA"><%=obj2.get("statu")==null?"未处理":obj2.get("statu")%></span>
     </div>
-    <br><br>
+    <br>
     <span>时间 ： </span><span><%=obj2.get("time")==null?" ":obj2.get("time")%></span><br>
     <br>
     <div class="Call" >
         物业反馈 ： <%=obj2.get("callback")==null?" ":obj2.get("callback")%>
+    </div>
+    <br>
+    <br>
+
+    <p>处理进度条：</p><br>
+    <div class="progress">
+
+        <%
+            if(obj2.get("statu")==null||obj2.get("statu").equals("未处理"))
+            {
+        %>
+        <div class="progress-bar progress-bar-danger  progress-bar-striped active" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 50%">
+            <span class="sr-only"></span>
+        </div>
+        <%
+            }
+        %>
+        <%
+            if(obj2.get("statu").equals("已处理"))
+            {
+        %>
+        <div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+            <span class="sr-only"></span>
+        </div>
+        <%
+            }
+        %>
+        <%
+            if(obj2.get("statu").equals("处理中"))
+            {
+        %>
+        <div class="progress-bar progress-bar-warning progress-bar-striped active" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 80%">
+            <span class="sr-only"></span>
+        </div>
+        <%
+            }
+        %>
+
     </div>
 </div>
     <%
@@ -252,5 +335,15 @@ show.onclick=function () {
 
 
 </script>
+
+
+
+
+
+
+<!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
+<script src="js/jquery-3.2.1.min.js"></script>
+<!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
+<script src="js/bootstrap.min.js"></script>
 </body>
 </html>

@@ -10,8 +10,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
   <title>Title</title>
+  <!-- Bootstrap -->
+  <link href="./css/bootstrap.min.css" rel="stylesheet">
+
   <link rel="stylesheet" href="css/reset.css">
   <link rel="stylesheet" href="FA/css/all.css">
   <link rel="stylesheet" href="css/style.css">
@@ -23,48 +29,63 @@
   <span>|</span>
 
   <button id="but2">我的表单</button>
-  <a href="javascript:void (0)" id="logina">登录</a>
+  <a href="javascript:void (0)" id="logina" class="btn btn-success">登录</a>
 </div>
 <div class="Choose">
-  <iframe src="./my-repair-bill.jsp" frameborder="0" id="Frame1" scrolling="no"></iframe>
+  <iframe src="./my-repair-bill.jsp" frameborder="0" id="Frame1" ></iframe>
 </div>
 <!--登录小窗口-->
 <div id="Login">
-  <button id="close" style="width: 50px;height: 50px;border-radius: 10px"><i class="fa fa-arrow-circle-left" style="font-size: 40px"></i></button>
+  <button id="close" class="btn btn-warning"><i class="fa fa-arrow-circle-left"></i></button>
   <form action="Servlet01" method="post">
     <div id="div1">
-      <span>用户:</span><input type="text" name="username" style="border: 1px solid deepskyblue"></div>
-    <br>
+      <span>用户:</span><input type="text" name="username" class="form-control"></div>
+    <br>  <br>
     <div id="div2">
-      <span>密码:</span><input type="text" name="userpass" style="border: 1px solid deepskyblue"></div>
-    <br>
+      <span>密码:</span><input type="text" name="userpass" class="form-control"></div>
+    <br>  <br>
     <div id="div3">
-    <a href=""><button type="submit" class="div3but">登录</button></a>
+      <br>
+      <br>
+      <br>
+      <br>
 
-    <a href="javascript:void(0)"><button class="div3but" onclick="func3()" type="button">注册</button></a>
+    <a href=""><button type="submit" class="btn btn-primary">登录</button></a>
+
+    <a href="javascript:void(0)"><button class="btn btn-primary" onclick="func3()" type="button">注册</button></a>
     </div>
 
   </form>
 </div>
 <!--注册小窗口-->
 <div id="Register">
-  <button id="close2" style="width: 50px;height: 50px;border-radius: 10px"><i class="fa fa-arrow-circle-left" style="font-size: 40px"></i></button>
-  <form action="Servlet04" method="post">
-    <div id="div12">
-      <span>用户:</span><input type="text" name="username" style="border: 1px solid deepskyblue"></div>
+  <button id="close2" class="btn btn-warning"><i class="fa fa-arrow-circle-left" ></i></button>
+  <div id="regis">
+  <form action="Servlet04" method="post" class="form-inline">
+    <div id="div12" class="form-group">
+      <label>用户:</label>
+      <input type="text" name="username" class="form-control"  ></div>
     <br>
-    <div id="div22">
-      <span>密码:</span><input type="text" name="userpass" style="border: 1px solid deepskyblue"></div>
     <br>
-    <div id="div33">
-      <span>电话 :</span><input type="text" name="tel" style="border: 1px solid deepskyblue"></div>
+    <br>
+    <div id="div22" class="form-group">
+      <label>密码:</label>
+      <input type="text" class="form-control"  name="userpass" ></div>
+    <br>
+    <br><br>
+    <div id="div33" class="form-group">
+      <label>电话:</label>
+      <input type="text" name="tel"  class="form-control" ></div>
+    <br>
+
+    <br>
     <br>
 
     <div id="div44">
-      <a href=""><button type="submit" class="div33but" onclick="window.location.reload()">注册</button></a>
+      <a href=""><button type="submit" class="btn btn-primary" onclick="window.location.reload()">注册</button></a>
     </div>
 
-  </form>
+  </form></div>
 </div>
 <!--遮罩层-->
 <div id="cover"></div>
@@ -78,12 +99,12 @@
   but1.onclick=function () {
     if (!(user == N))
     {
-        but1.style.backgroundColor="deepskyblue";
-   but1.style.color="white";
+      but1.style.backgroundColor="deepskyblue";
+      but1.style.color="white";
 
-   but2.style.backgroundColor="white";
-   but2.style.color="deepskyblue";
-   document.getElementById("Frame1").src="./Submit-bill.jsp";
+      but2.style.backgroundColor="white";
+      but2.style.color="deepskyblue";
+      document.getElementById("Frame1").src="./Submit-bill.jsp";
     }else
     {
       var Login=document.getElementById("Login");
@@ -94,12 +115,12 @@
     }
 
 
-  /*  but1.style.backgroundColor="deepskyblue";
-    but1.style.color="white";
+    /*  but1.style.backgroundColor="deepskyblue";
+      but1.style.color="white";
 
-    but2.style.backgroundColor="white";
-    but2.style.color="deepskyblue";
-    document.getElementById("Frame1").src="./Submit-bill.jsp";*/
+      but2.style.backgroundColor="white";
+      but2.style.color="deepskyblue";
+      document.getElementById("Frame1").src="./Submit-bill.jsp";*/
   };
   but2.onclick=function () {
     but2.style.backgroundColor="deepskyblue";
@@ -131,14 +152,24 @@
     document.getElementById("logina").innerHTML="你好！"+"<%=session.getAttribute("user")%>"
   }
 
-function  func3()
-{
-  document.getElementById("Register").style.display="block";
-}
+  function  func3()
+  {
+    document.getElementById("Register").style.display="block";
+  }
 
 
-
+  document.getElementById("close2").onclick=function () {
+    var Login=document.getElementById("Register");
+    Login.style.display="none";
+    document.getElementById("cover").style.display="none";
+  }
 </script>
+
+
 <link rel="script" href="js/index.js">
+<!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
+<script src="js/jquery-3.2.1.min.js"></script>
+<!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
+<script src="js/bootstrap.min.js"></script>
 </body>
 </html>

@@ -4,3 +4,6 @@ document.getElementById("close2").onclick=function () {
     document.getElementById("cover").style.display="none";
 }
 
+
+
+
