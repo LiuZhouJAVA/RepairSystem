@@ -24,18 +24,90 @@
 </head>
 <body>
 <div class="tab">
-  <button id="but1">提交表单</button>
+  <button type="button" class="btn btn-default btn-lg" id="but1">提交表单</button>
 
   <span>|</span>
 
-  <button id="but2">我的表单</button>
-  <a href="javascript:void (0)" id="logina" class="btn btn-success">登录</a>
+  <button type="button" class="btn btn-primary btn-lg" id="but2">我的表单</button>
+
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal" style="float: right;margin-right: 100px;margin-top: 15px" id="LOGINBUT">
+    <%=session.getAttribute("user")==null?"登录":"Hello,"+session.getAttribute("user")%>
+  </button>
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal2" style="float: right;margin-right: 20px;margin-top: 15px">
+    注册
+  </button>
+
+
+<%--  <a href="javascript:void (0)" id="logina" class="btn btn-success">登录</a>--%>
+</div><!-- Modal -->
+<div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h3 class="modal-title" id="myModalLabel2">User Register</h3>
+      </div>
+      <div class="modal-body">
+        <form action="Servlet04" method="post" class="form-inline" id="loginform2">
+          <div  class="form-group">
+            <label>用户:</label>
+            <input type="text" name="username" class="form-control"  ></div>
+          <br>
+          <br>
+          <div  class="form-group">
+            <label>密码:</label>
+            <input type="text" class="form-control"  name="userpass" ></div>
+          <br>
+          <br> <div  class="form-group">
+          <label>电话:</label>
+          <input type="text" class="form-control"  name="tel" ></div>
+          <br>
+          <br>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary" id="registerbut">Submit</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">User Login</h4>
+      </div>
+      <div class="modal-body">
+        <form action="Servlet01" method="post" class="form-inline" id="loginform">
+          <div id="div12" class="form-group">
+            <label>用户:</label>
+            <input type="text" name="username" class="form-control"  ></div>
+          <br>
+          <br>
+          <div id="div22" class="form-group">
+            <label>密码:</label>
+            <input type="text" class="form-control"  name="userpass" ></div>
+          <br>
+          <br>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary" id="loginbut">Submit</button>
+      </div>
+    </div>
+  </div>
 </div>
 <div class="Choose">
   <iframe src="./my-repair-bill.jsp" frameborder="0" id="Frame1" ></iframe>
 </div>
 <!--登录小窗口-->
-<div id="Login">
+<%--<div id="Login">
   <button id="close" class="btn btn-warning"><i class="fa fa-arrow-circle-left"></i></button>
   <form action="Servlet01" method="post">
     <div id="div1">
@@ -56,9 +128,9 @@
     </div>
 
   </form>
-</div>
+</div>--%>
 <!--注册小窗口-->
-<div id="Register">
+<%--<div id="Register">
   <button id="close2" class="btn btn-warning"><i class="fa fa-arrow-circle-left" ></i></button>
   <div id="regis">
   <form action="Servlet04" method="post" class="form-inline">
@@ -86,11 +158,24 @@
     </div>
 
   </form></div>
-</div>
+</div>--%>
+
 <!--遮罩层-->
 <div id="cover"></div>
 <script>
+  var loginbut=document.getElementById("loginbut");
+  loginbut.onclick=function () {
+    document.getElementById("loginform").submit();
+  }
+  var registerbut=document.getElementById("registerbut");
+  registerbut.onclick=function () {
+    document.getElementById("loginform2").submit();
+  }
+</script>
+
+<script>
   var user="<%=session.getAttribute("user")%>";
+  <%System.out.println(session.getAttribute("user")+"---index.jsp");%>
   var N="null";
 
   var but2=document.getElementById("but2");
@@ -99,11 +184,10 @@
   but1.onclick=function () {
     if (!(user == N))
     {
-      but1.style.backgroundColor="deepskyblue";
-      but1.style.color="white";
+      but1.className="btn btn-primary btn-lg";
 
-      but2.style.backgroundColor="white";
-      but2.style.color="deepskyblue";
+
+      but2.className="btn btn-default btn-lg";
       document.getElementById("Frame1").src="./Submit-bill.jsp";
     }else
     {
@@ -123,11 +207,11 @@
       document.getElementById("Frame1").src="./Submit-bill.jsp";*/
   };
   but2.onclick=function () {
-    but2.style.backgroundColor="deepskyblue";
-    but2.style.color="white";
+    but2.className="btn btn-primary btn-lg";
 
-    but1.style.backgroundColor="white";
-    but1.style.color="deepskyblue";
+
+    but1.className="btn btn-default btn-lg";
+
 
     document.getElementById("Frame1").src="./my-repair-bill.jsp";
   };
@@ -147,10 +231,8 @@
 
 
 
-  if(!(user == N))
-  {
-    document.getElementById("logina").innerHTML="你好！"+"<%=session.getAttribute("user")%>"
-  }
+
+
 
   function  func3()
   {

@@ -78,7 +78,11 @@
 
             margin-left: 200px;
             margin-top: 20px;
-            border: 1px solid deepskyblue;
+
+            padding-top: 15px;
+            padding-left: 15px;
+            border: 1px solid rgb(51,122,183);
+
        /*     font-size: 18px;
             font-weight: bolder;
             font-family: Arial, "Microsoft Yahei", "Helvetica Neue", Helvetica, sans-serif;*/
@@ -109,7 +113,7 @@
         {
 
             border-radius: 10px;
-            border: 1px solid #15ffd9;
+            border: 1px solid rgb(51,122,183);
             padding-top: 5px;
             padding-bottom: 5px;
             /*background-color: white;*/
@@ -151,16 +155,19 @@
         String status=request.getParameter("staoption");
         String user= (String) session.getAttribute("user");
 
-        System.out.println(classify);
-        System.out.println(status);
-        System.out.println(user);
-        /*String classify= (String) session.getAttribute("classify");
-        String status= (String) session.getAttribute("status");*/
+        System.out.println(classify+"?");
+        System.out.println(status+"??");
+        System.out.println(user+"???");
+        List<Map<String,Object>> list=getBean.GET_ALLREPARI_BYID(user);
+
 
         if (classify==null&&user!=null)
         {
-            List<Map<String,Object>> list=getBean.GET_ALLREPARI();
-            System.out.println();
+    %>
+    <button class="btn btn-primary" type="button" style="margin-left: 200px">
+        Messages <span class="badge"><%=list.size()%></span>
+    </button>
+    <%
             for (Map<String,Object> obj:list
             ) {
                 System.out.println("======="+obj.get("userid"));
@@ -186,7 +193,8 @@
             物业反馈 ： <%=obj.get("callback")==null?" ":obj.get("callback")%>
         </div>
         <br>
-        <br><p>处理进度条：</p><br>
+        <br>
+        <hr><p>处理进度条：</p><br>
         <div class="progress">
 
 
@@ -231,6 +239,12 @@
 
 //        if (classify == "物业保修"){
             List<Map<String,Object>> list1 = getBean.GET_CHOOSEREPAIR(user,classify,status);
+if (!list1.isEmpty()){
+    %>
+    <button class="btn btn-primary" type="button" style="margin-left: 200px">
+        Messages <span class="badge"><%=list1.size()%></span>
+    </button>
+    <%}
             for (Map<String,Object> obj2:list1)
             {
     %>
@@ -255,7 +269,7 @@
     </div>
     <br>
     <br>
-
+    <hr>
     <p>处理进度条：</p><br>
     <div class="progress">
 

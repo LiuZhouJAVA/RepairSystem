@@ -16,6 +16,13 @@ public class GetBean {
         return list;
     }
 
+    public List GET_ALLREPARI_BYID(String id)
+    {
+        String sql="select * from repair where userid='"+id+"'";
+        List<Map<String,Object>> list=template.queryForList(sql);
+        return list;
+    }
+
     public List GET_CHOOSEREPAIR(String user,String clssify,String status)
     {
         String sql="SELECT * FROM pro_maintenance.repair where userid='"+user+"' and classify='"+clssify+"' and statu='"+status+"'";
