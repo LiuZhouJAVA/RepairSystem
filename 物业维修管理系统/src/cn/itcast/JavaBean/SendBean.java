@@ -18,9 +18,9 @@ public class SendBean {
         template.update(sql);
     }
 
-    public void CHANGE(String statu,String state,String userid,String time)
+    public void CHANGE(String statu,String state,String userid,String time,long endtime,String time2)
     {
-        String sql="update pro_maintenance.repair set statu='"+statu+"', callback='"+state+"' where userid='"+userid+"' and time='"+time+"'";
+        String sql="update pro_maintenance.repair set statu='"+statu+"', callback='"+state+"',endtime='"+endtime+"',duringtime='"+time2+"' where userid='"+userid+"' and time='"+time+"'";
         template.update(sql);
     }
 

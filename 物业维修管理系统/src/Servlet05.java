@@ -19,15 +19,16 @@ public class Servlet05 extends HttpServlet {
         String userid=request.getParameter("userid");
         String statu=request.getParameter("CHOOSESTA");
         String time=request.getParameter("time");
+        //设置的处理时长
+        String time2=request.getParameter("ENDTiME");
+
+        long endtime=System.currentTimeMillis()+Integer.parseInt(time2)*24*60*60*1000;
 
 
-        System.out.println(callback);
-        System.out.println(statu);
-        System.out.println(time);
-        System.out.println(userid+"----");
+        System.out.println(endtime+"------");
 
 
-        new SendBean().CHANGE(statu,callback,userid,time);
+        new SendBean().CHANGE(statu,callback,userid,time,endtime,time2);
 
 
 

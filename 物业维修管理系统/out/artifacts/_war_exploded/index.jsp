@@ -191,11 +191,7 @@
       document.getElementById("Frame1").src="./Submit-bill.jsp";
     }else
     {
-      var Login=document.getElementById("Login");
-      Login.style.display="block";
-
-
-      document.getElementById("cover").style.display="block";
+      alert("请先登录！")
     }
 
 

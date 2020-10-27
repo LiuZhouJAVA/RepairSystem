@@ -55,7 +55,7 @@
             margin-left: 207px;
             font-size: 15px;
             font-weight: bolder;
-            color: #00a8ec;
+            /*background-color: rgba(154, 154, 154, 0.36);*/
         }
         #choose span
         {
@@ -95,14 +95,7 @@
         {
             box-shadow: 10px 10px 10px black;
         }
-        #confirm
-        {
-            width: 75px;
-            height: 25px;
-            background-color: deepskyblue;
-            color: white;
-            font-weight: bolder;
-        }
+
         .SA
         {
             float: right;
@@ -124,7 +117,7 @@
 <body>
 <div id="choose">
     <form action="" method="post">
-        <span class="claf">问题分类</span>
+        <span class="label label-primary">问题分类</span>
         <select name="qusoption">
             <option value="--请选择--" >--请选择--</option>
             <option value="物业保修">物业保修</option>
@@ -132,14 +125,14 @@
             <option value="服务缺陷" >服务缺陷</option>
             <option value="其他问题" >其他问题</option>
         </select>
-        <span>状态</span>
+        <span class="label label-primary">状态</span>
         <select name="staoption">
             <option value="--全部--" >--全部--</option>
             <option value="处理中" >处理中</option>
             <option value="未处理" >未处理</option>
             <option value="已处理" >已处理</option>
         </select>
-        <button type="submit" id="confirm" onclick="func()" >确认</button>
+        <button type="submit" id="confirm" onclick="func()" class="btn btn-primary">确认</button>
     </form>
 </div>
 <hr>
@@ -168,13 +161,26 @@
         Messages <span class="badge"><%=list.size()%></span>
     </button>
     <%
+        int num=0;
+
+
+
             for (Map<String,Object> obj:list
             ) {
                 System.out.println("======="+obj.get("userid"));
                 if(user.equals(obj.get("userid"))){
+                    System.out.println("ENDTIME"+obj.get("endtime"));
+                    long lefttime=0;
+
+                    if ((String)obj.get("endtime")!=null) {
+                         lefttime = Long.parseLong((String) obj.get("endtime")) - System.currentTimeMillis();
+                        System.out.println(lefttime+"-*-*-*-*-*-");
+                        System.out.println(obj.get("duringtime")+"-*-*-*-*-*");
+                        System.out.println((lefttime/(Integer.parseInt((String)obj.get("duringtime"))*24*60*60*10))+"-*-*-*-*--*");
+                    }
 
     %>
-    <div class="show" >
+    <div class="show"  >
     <span>问题分类 ： </span><span><%=obj.get("classify")==null?" ":obj.get("classify")%></span> <br>
         <br>
     <span>发生地址 ： </span><span><%=obj.get("address")==null?" ":obj.get("address")%></span><br>
@@ -195,6 +201,43 @@
         <br>
         <br>
         <hr><p>处理进度条：</p><br>
+        <div>
+            <span class="label label-info" id="_d<%=num%>">00</span>
+            <span class="label label-info" id="_h<%=num%>">00</span>
+            <span class="label label-info" id="_m<%=num%>">00</span>
+            <span class="label label-info" id="_s<%=num%>">00</span>
+        </div>  <br>
+        <script>
+            function countTime<%=num%>() {
+                //获取当前时间
+                var date = new Date();
+                var now = date.getTime();
+                //设置截止时间
+
+
+                var end = "<%=obj.get("endtime")%>";
+
+                //时间差
+                var leftTime = end - now;
+
+                //定义变量 d,h,m,s保存倒计时的时间
+                var d, h, m, s;
+                if (leftTime >= 0) {
+                    d = Math.floor(leftTime / 1000 / 60 / 60 / 24);
+                    h = Math.floor(leftTime / 1000 / 60 / 60 % 24);
+                    m = Math.floor(leftTime / 1000 / 60 % 60);
+                    s = Math.floor(leftTime / 1000 % 60);
+                    //将倒计时赋值到div中
+                    document.getElementById("_d<%=num%>").innerHTML = d + "天";
+                    document.getElementById("_h<%=num%>").innerHTML = h + "时";
+                    document.getElementById("_m<%=num%>").innerHTML = m  + "分";
+                    document.getElementById("_s<%=num%>").innerHTML = s + "秒";
+                }
+            }
+
+            setInterval(countTime<%=num%>,1000)
+
+        </script>
         <div class="progress">
 
 
@@ -202,7 +245,7 @@
             if(obj.get("statu")==null||obj.get("statu").equals("未处理"))
             {
             %>
-            <div class="progress-bar progress-bar-danger  progress-bar-striped active" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 50%">
+            <div class="progress-bar progress-bar-danger  progress-bar-striped active" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 10%">
                 <span class="sr-only"></span>
             </div>
             <%
@@ -222,7 +265,7 @@
                 if(obj.get("statu").equals("处理中"))
                 {
             %>
-            <div class="progress-bar progress-bar-warning progress-bar-striped active" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 80%">
+            <div class="progress-bar progress-bar-warning progress-bar-striped active" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: <%=100-(lefttime/(Long.parseLong((String)obj.get("duringtime"))*24*60*60*10))%>%">
                 <span class="sr-only"></span>
             </div>
             <%
@@ -232,7 +275,7 @@
         </div>
     </div>
 
-    <%
+    <% num++;
             }}}
 
 
@@ -245,8 +288,20 @@ if (!list1.isEmpty()){
         Messages <span class="badge"><%=list1.size()%></span>
     </button>
     <%}
+
+int num2=0;
             for (Map<String,Object> obj2:list1)
             {
+
+                long lefttime=0;
+
+                if ((String)obj2.get("endtime")!=null) {
+                    lefttime = Long.parseLong((String) obj2.get("endtime")) - System.currentTimeMillis();
+                    System.out.println(lefttime+"-*-*-*-*-*-");
+                    System.out.println(obj2.get("duringtime")+"-*-*-*-*-*");
+                    System.out.println((lefttime/(Integer.parseInt((String)obj2.get("duringtime"))*24*60*60*10))+"-*-*-*-*--*");
+                }
+
     %>
 <div class="show" >
     <span>问题分类 ： </span><span><%=obj2.get("classify")==null?" ":obj2.get("classify")%></span><br>
@@ -271,13 +326,49 @@ if (!list1.isEmpty()){
     <br>
     <hr>
     <p>处理进度条：</p><br>
+    <div>
+        <span class="label label-info" id="_d<%=num2%>">00</span>
+        <span class="label label-info" id="_h<%=num2%>">00</span>
+        <span class="label label-info" id="_m<%=num2%>">00</span>
+        <span class="label label-info" id="_s<%=num2%>">00</span>
+    </div>  <br>
+    <script>
+        function countTime<%=num2%>() {
+            //获取当前时间
+            var date = new Date();
+            var now = date.getTime();
+            //设置截止时间
+
+
+            var end = "<%=obj2.get("endtime")%>";
+
+            //时间差
+            var leftTime = end - now;
+            //定义变量 d,h,m,s保存倒计时的时间
+            var d, h, m, s;
+            if (leftTime >= 0) {
+                d = Math.floor(leftTime / 1000 / 60 / 60 / 24);
+                h = Math.floor(leftTime / 1000 / 60 / 60 % 24);
+                m = Math.floor(leftTime / 1000 / 60 % 60);
+                s = Math.floor(leftTime / 1000 % 60);
+                //将倒计时赋值到div中
+                document.getElementById("_d<%=num2%>").innerHTML = d + "天";
+                document.getElementById("_h<%=num2%>").innerHTML = h + "时";
+                document.getElementById("_m<%=num2%>").innerHTML = m +"分";
+                document.getElementById("_s<%=num2%>").innerHTML = s + "秒";
+            }
+        }
+
+        setInterval(countTime<%=num2%>,1000)
+
+    </script>
     <div class="progress">
 
         <%
             if(obj2.get("statu")==null||obj2.get("statu").equals("未处理"))
             {
         %>
-        <div class="progress-bar progress-bar-danger  progress-bar-striped active" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 50%">
+        <div class="progress-bar progress-bar-danger  progress-bar-striped active" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 10%">
             <span class="sr-only"></span>
         </div>
         <%
@@ -297,7 +388,7 @@ if (!list1.isEmpty()){
             if(obj2.get("statu").equals("处理中"))
             {
         %>
-        <div class="progress-bar progress-bar-warning progress-bar-striped active" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 80%">
+        <div class="progress-bar progress-bar-warning progress-bar-striped active" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: <%=100-(lefttime/(Long.parseLong((String)obj2.get("duringtime"))*24*60*60*10))%>%">
             <span class="sr-only"></span>
         </div>
         <%
@@ -307,7 +398,7 @@ if (!list1.isEmpty()){
     </div>
 </div>
     <%
-//            }
+        num2++;
 
         }
 
@@ -318,7 +409,9 @@ if (!list1.isEmpty()){
 
 
 <script>
-function func() {
+
+
+    function func() {
     window.location.reload();
 }
 

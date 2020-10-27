@@ -27,7 +27,7 @@
         .show
         {
             width: 1440px;
-            height: 180px;
+            height: 280px;
 
             margin-left: 200px;
             margin-top: 20px;
@@ -134,6 +134,21 @@
             <option value="处理中">处理中</option>
             <option value="已处理">已处理</option>
         </select>
+    </div>
+    <br>
+    <br>
+    <div class="SA">
+        <select name="ENDTiME" style="color: orangered;font-weight: bolder">
+            <option value=" ">--请选择--</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+
+        </select><span>天</span>
     </div>
     <br>
     <br>
